@@ -10,3 +10,9 @@ let answer1 = increasingDigits
   .count
 
 print(answer1)
+
+let answer2 = increasingDigits
+          .filter { (digits: [Int]) in digits.reduce(into: [:]) { $0[$1, default: 0] += 1 }.values.contains(2) }
+          .count
+
+print(answer2)
