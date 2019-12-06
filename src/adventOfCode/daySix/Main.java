@@ -13,7 +13,6 @@ public class Main {
         try {
             String filePath = "src/resources/daySixInput.txt";
             String[] inputArray = Files.readString(Paths.get(filePath)).split("\n");
-            System.out.println(Arrays.toString(inputArray));
             Main day6 = new Main(inputArray);
             day6.doPart1();
             day6.doPart2();
