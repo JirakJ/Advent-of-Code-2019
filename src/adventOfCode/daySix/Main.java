@@ -35,13 +35,13 @@ public class Main {
     }
 
     private void doPart2() {
-        ArrayList<String> YOUtoCOM = new ArrayList<String>();
+        ArrayList<String> YOUtoCOM = new ArrayList<>();
         YOUtoCOM.add(map.get("YOU").getImmediateOrbitID());
         while(!YOUtoCOM.get(YOUtoCOM.size()-1).equals("COM")){
             YOUtoCOM.add(map.get(YOUtoCOM.get(YOUtoCOM.size()-1)).getImmediateOrbitID());
         }
 
-        ArrayList<String> SANtoCOM = new ArrayList<String>();
+        ArrayList<String> SANtoCOM = new ArrayList<>();
         SANtoCOM.add(map.get("SAN").getImmediateOrbitID());
         while(!SANtoCOM.get(SANtoCOM.size()-1).equals("COM")){
             SANtoCOM.add(map.get(SANtoCOM.get(SANtoCOM.size()-1)).getImmediateOrbitID());
