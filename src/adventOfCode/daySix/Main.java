@@ -31,7 +31,7 @@ public class Main {
     }
 
     private void doPart1() {
-        System.out.println(totalOrbits);
+        System.out.println("Part 1: "+totalOrbits);
     }
 
     private void doPart2() {
@@ -49,7 +49,7 @@ public class Main {
         for(int y = 0; y<YOUtoCOM.size() ; y++) {
             for(int s = 0; s<SANtoCOM.size() ; s++) {
                 if(SANtoCOM.get(s).equals(YOUtoCOM.get(y))){
-                    System.out.println(y+s);
+                    System.out.println("Part 2: "+(y+s));
                     return;
                 }
             }
