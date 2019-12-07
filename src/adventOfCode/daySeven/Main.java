@@ -32,14 +32,15 @@ public class Main {
                 .boxed()
                 .toArray(Integer[]::new);
 
-        List<List<Integer>> permutationsPart1 = getPermutations(range(0, 4 + 1).boxed().collect(toList()), 0);
-        System.out.println("Part 1: " + permutationsPart1.parallelStream()
-                .mapToInt(l -> findLargestThrust(code, l, false)).max()
-                .orElseThrow(() -> new RuntimeException("Unable to find a maximum value")));
+        result(code, 0, 4, "Part 1: ", false);
 
-        List<List<Integer>> permutationsPart2 = getPermutations(range(5, 9 + 1).boxed().collect(toList()), 0);
-        System.out.println("Part 2: " + permutationsPart2.parallelStream()
-                .mapToInt(l -> findLargestThrust(code, l, true)).max()
+        result(code, 5, 9, "Part 2: ", true);
+    }
+
+    private static void result(Integer[] code, int i, int i2, String s, boolean b) {
+        List<List<Integer>> permutationsPart2 = getPermutations(range(i, i2 + 1).boxed().collect(toList()), 0);
+        System.out.println(s + permutationsPart2.parallelStream()
+                .mapToInt(l -> findLargestThrust(code, l, b)).max()
                 .orElseThrow(() -> new RuntimeException("Unable to find a maximum value")));
     }
 
