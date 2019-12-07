@@ -73,8 +73,8 @@ public class Main {
             }
             wires.get(0).put(0); // Initial Input
             executor.shutdown();
-            executor.awaitTermination(1L, TimeUnit.DAYS);
-            return wires.get(wires.size() - 1).poll(10L, TimeUnit.DAYS);
+            executor.awaitTermination(1, TimeUnit.DAYS);
+            return wires.get(wires.size() - 1).poll(10, TimeUnit.DAYS);
         } catch (Throwable t) {
             throw new RuntimeException(t);
         }
@@ -98,7 +98,7 @@ public class Main {
                     String cmd = String.format("%05d", code[pc]);
                     int opCode = Integer.parseInt(cmd.substring(3));
                     if (opCode == INPUT) {
-                        code[code[pc + 1]] = in.poll(10L, TimeUnit.DAYS);
+                        code[code[pc + 1]] = in.poll(10, TimeUnit.DAYS);
                         pc += 2;
                         continue;
                     } else if (opCode == OUTPUT) {
@@ -121,10 +121,10 @@ public class Main {
                     } else if (opCode == JMP_IF_FALSE) {
                         pc = param1 == 0 ? param2 : pc + 3;
                     } else if (opCode == LESS_THAN) {
-                        code[code[pc + 3]] = Math.toIntExact(param1 < param2 ? 1L : 0L);
+                        code[code[pc + 3]] = Math.toIntExact(param1 < param2 ? 1 : 0);
                         pc += 4;
                     } else if (opCode == EQUAL) {
-                        code[code[pc + 3]] = Math.toIntExact(param1.equals(param2) ? 1L : 0L);
+                        code[code[pc + 3]] = Math.toIntExact(param1.equals(param2) ? 1 : 0);
                         pc += 4;
                     }
                 } while (!code[pc].equals(EXIT));
