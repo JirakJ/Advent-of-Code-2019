@@ -34,12 +34,12 @@ public class Main {
 
         List<List<Integer>> permutationsPart1 = getPermutations(range(0, 4 + 1).boxed().collect(toList()), 0);
         System.out.println("Part 1: " + permutationsPart1.parallelStream()
-                .mapToInt(l -> findLargestThrustPart1(code, l)).max()
+                .mapToInt(l -> findLargestThrust(code, l, false)).max()
                 .orElseThrow(() -> new RuntimeException("Unable to find a maximum value")));
 
         List<List<Integer>> permutationsPart2 = getPermutations(range(5, 9 + 1).boxed().collect(toList()), 0);
         System.out.println("Part 2: " + permutationsPart2.parallelStream()
-                .mapToInt(l -> findLargestThrustPart2(code, l)).max()
+                .mapToInt(l -> findLargestThrust(code, l, true)).max()
                 .orElseThrow(() -> new RuntimeException("Unable to find a maximum value")));
     }
 
@@ -56,35 +56,16 @@ public class Main {
         return permutations;
     }
 
-    private static Integer findLargestThrustPart1(Integer[] code, List<Integer> phases) {
-        try {
-            ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
-            List<BlockingQueue<Integer>> wires = IntStream.range(0, phases.size() + 1)
-                    .mapToObj(c -> {
-                        return new ArrayBlockingQueue<Integer>(2);
-                    })
-                    .collect(toList());
-            for (int i = 0; i < phases.size(); i++) {
-                wires.get(i).put(phases.get(i));
-                executor.execute(new Amp(code, wires.get(i), wires.get(i + 1)));
-            }
-            wires.get(0).put(0); // Initial Input
-            executor.shutdown();
-            executor.awaitTermination(1L, TimeUnit.DAYS);
-            return wires.get(wires.size() - 1).poll(10L, TimeUnit.DAYS);
-        } catch (Throwable t) {
-            throw new RuntimeException(t);
-        }
-    }
-
-    private static Integer findLargestThrustPart2(Integer[] code, List<Integer> phases) {
+    private static Integer findLargestThrust(Integer[] code, List<Integer> phases, boolean part2) {
         try {
             ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
             List<BlockingQueue<Integer>> wires = IntStream.range(0, phases.size() + 1)
                     .mapToObj(c -> new ArrayBlockingQueue<Integer>(2))
                     .collect(toList());
-            wires.remove(wires.size() - 1);
-            wires.add(wires.size(), wires.get(0));
+            if(part2) {
+                wires.remove(wires.size() - 1);
+                wires.add(wires.size(), wires.get(0));
+            }
             for (int i = 0; i < phases.size(); i++) {
                 wires.get(i).put(phases.get(i));
                 executor.execute(new Amp(code, wires.get(i), wires.get(i + 1)));
