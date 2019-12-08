@@ -1,4 +1,4 @@
-package adventOfCode.daySeven;
+package adventOfCode.day7;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -59,9 +59,9 @@ public class Main {
 
     private static Integer findLargestThrust(Integer[] code, List<Integer> phases, boolean part2) {
         try {
-            ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
+            ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(8);
             List<BlockingQueue<Integer>> wires = IntStream.range(0, phases.size() + 1)
-                    .mapToObj(c -> new ArrayBlockingQueue<Integer>(2))
+                    .mapToObj(c -> new ArrayBlockingQueue<Integer>(8))
                     .collect(toList());
             if(part2) {
                 wires.remove(wires.size() - 1);
