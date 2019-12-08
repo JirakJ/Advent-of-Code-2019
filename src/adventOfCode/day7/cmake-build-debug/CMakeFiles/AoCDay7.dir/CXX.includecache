@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/jirakj/Work/Advent of Code 2019/src/adventOfCode/daySeven/Main.cpp
+utility
+-
+iostream
+-
+chrono
+-
+utility
+-
+vector
+-
+algorithm
+-
+iostream
+-
+vector
+-
+array
+-
+cmath
+-
+cstring
+-
+fstream
+-
+vector
+-
+string
+-
+iostream
+-
+algorithm
+-
+iterator
+-
+

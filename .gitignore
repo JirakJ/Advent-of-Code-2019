@@ -1,8 +1,9 @@
 out/
 Advent of Code 2019.iml
 .idea/
-/src/adventOfCode/daySeven/cmake-build-debug/
+/adventOfCode/day7/cmake-build-debug/
 .DS_Store
 src/.DS_Store
 src/adventOfCode/.DS_Store
-src/adventOfCode/daySeven/cmake-build-debug/
+src/adventOfCode/day7/cmake-build-debug/
+/src/adventOfCode/day7/cmake-build-debug/
