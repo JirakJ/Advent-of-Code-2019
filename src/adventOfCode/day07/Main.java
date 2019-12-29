@@ -1,4 +1,4 @@
-package adventOfCode.day7;
+package adventOfCode.day07;
 
 import java.io.IOException;
 import java.nio.file.Files;

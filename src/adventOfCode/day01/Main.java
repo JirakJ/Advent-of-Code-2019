@@ -1,4 +1,4 @@
-package adventOfCode.day1;
+package adventOfCode.day01;
 
 public class Main {
 
